@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./assets/outSources/css/bootstrap.css">
+    <link rel="stylesheet" href="./assets/outSources/css/jquery-ui.css">
+    <link rel="stylesheet" href="./assets/outSources/css/animate.css">
+    <link rel="stylesheet" href="./assets/css/style.css">
+    <script src="./assets/outSources/scripts/jquery-3.6.0.js"></script>
+    <script src="./assets/outSources/scripts/jquery-ui.js"></script>
+    <script src="./assets/outSources/scripts/bootstrap.bundle.js"></script>
+    <script src="./assets/outSources/scripts/bootstrap.js"></script>
+    <script src="./assets/outSources/scripts/owl.carousel.js"></script>
+    <script src="https://kit.fontawesome.com/4df1339666.js" crossorigin="anonymous"></script>
+    <title>My music</title>
+</head>
+
+<body>
+    <header></header>
+    <main>
+        <div class="my_music container mt-3">
+            <div class="row">
+                <div class="rolling-disk col-12 col-lg-4 d-flex flex-column align-items-center">
+                    <h2 class="main-music-title text-center">Tên bài nhạc</h2>
+                    <div class="rolling position-relative rounded-circle ">
+                        <img src="./assets/medias/test.jpg" alt="name-music" class="background-disk align-self-center w-100 rounded-circle">
+                        <div class="in-disk rounded-circle position-absolute"></div>
+                        <div class="mid-disk position-absolute"></div>
+                    </div>
+                    <h3 class="main-music-author"></h3>
+                    <div class="control-bar col-12 d-flex flex-row mt-2 justify-content-between">
+                        <i class="fas fa-random align-self-center" name="random"></i>
+                        <i class="fas fa-step-backward align-self-center" name="backward"></i>
+                        <i class="fas fa-play-circle align-self-center" name="play"></i>
+                        <i class="fas fa-step-forward align-self-center" name="forward"></i>
+                        <i class="fas fa-redo align-self-center" name="repeat" repeatType="0">
+                            <span class="type-repeat"></span>
+                        </i>
+                        <input type="range" class="volume-control" name="volume" value="50" step="1" min="0" max="100">
+                    </div>
+                    <div class="m-progress col-12 mt-2">
+                        <input type="range" class="progress-control" name="volume" value="0" step=".1" min="0" max="100">
+                        <audio src="#" class="my-cosmos-music"></audio>
+                    </div>
+                </div>
+                <div class="list-music p-2 col-12 col-lg-8">
+                    <div class="field col-12 row">
+                        <div class="field-name align-self-center col-8 col-lg-6">Bài hát</div>
+                        <div class="time d-none d-xl-block col-lg-2 align-self-center text-center">Thời gian</div>
+                        <div class="sort col-4 align-self-center text-end btn text-white">Mặc định</div>
+                        <div class="sorting">
+                            <div class="btn d-block text-white  soft-default">Mặc Định</div>
+                            <div class="btn d-block text-white soft-A-Z">A->Z</div>
+                            <div class="btn d-block text-white soft-Z-A">Z->A</div>
+                        </div>
+                    </div>
+                    <div class="list"></div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <footer>
+
+    </footer>
+    <script src="./assets/scripts/main.js"></script>
+</body>
+
+</html>
