@@ -74,7 +74,7 @@ function MusicApp(musicContain, options) {
     }
     this.loadCurrentSong = function(song) {
         this.mainDisk.find('.main-music-title').html(song.musicName);
-        this.mainDisk.find('img').attr('src', song.musicImage);
+        this.mainDisk.find('.background-disk').css('background-image', 'url(' + song.musicImage);
         this.mainDisk.find('.main-music-author').html(song.author);
         this.mainDisk.find('.my-cosmos-music').attr('src', song.url);
     };
@@ -136,17 +136,16 @@ function MusicApp(musicContain, options) {
         }
     }
     this.trackingSong = function() {
-        let currSong = this.mainDisk.find('.my-cosmos-music');
-        let progress = $('.progress-control');
+        let currSong = this.mainDisk[0].querySelector('.my-cosmos-music');
+        let progress = this.mainDisk[0].querySelector('.progress-control');
 
-        currSong.on('timeupdate', function(e) {
-            let duration = e.target.duration;
-            let percent = e.target.currentTime / duration * 100;
-            if (!percent) {
-                percent = 0;
+        currSong.ontimeupdate = function(e) {
+
+            if (currSong) {
+                let percent = currSong.currentTime / currSong.duration * 100;
+                progress.value = percent;
             }
-            progress.attr('value', percent);
-        });
+        }
     }
     this.handleControllSong = function() {
         let btnRan = this.mainDisk.find('.fa-random');
@@ -216,11 +215,11 @@ function MusicApp(musicContain, options) {
                 _this.nextSong();
             }
         });
-        volumeControl.on('change', function(e) {
+        volumeControl.on('input', function(e) {
             _this.musicVolume = e.target.value / 100;
             _this.music.volume = _this.musicVolume;
         });
-        progress.on('change', function(e) {
+        progress.on('input', function(e) {
             let duration = _this.music.duration;
 
             _this.music.currentTime = duration * e.target.value / 100;
@@ -229,10 +228,25 @@ function MusicApp(musicContain, options) {
 
     }
     this.handleEvent = function() {
-        let _this = this;
-        let currentListSong = $('.music-item');
-        let btnDelete = currentListSong.find('.music-remove');
-        let btnMove = currentListSong.find('.music-move');
+        const _this = this;
+        const currentListSong = $('.music-item');
+        const btnDelete = currentListSong.find('.music-remove');
+        const btnMove = currentListSong.find('.music-move');
+        const disk = this.mainDisk.find('.rolling');
+        /*  const diskWidth =disk.width();
+
+         window.onscroll = function(e) {
+             const scrollTop = window.scrollY || document.documentElement.scrollTop;;
+             const newCdWidth = cdWidth - scrollTop;
+           
+             let amplitude = (width - scrollTop > 0) ? (width - scrollTop) : (0);
+             let percent = amplitude / width;
+
+             disk.css({
+                 height: `${amplitude}px`,
+                 opacity: percent
+             })
+         } */
 
         currentListSong.on('click', function(e) {
             _this.currentSong = $(this).attr('musicid');
@@ -250,7 +264,6 @@ function MusicApp(musicContain, options) {
             music_item.remove();
             _this.listMusic.splice(id, 1);
         });
-        $(document).on('scroll', function(e) {});
 
         btnMove.on('mousedown', function(e) {
             $(this).parents('.music-item').draggable({
